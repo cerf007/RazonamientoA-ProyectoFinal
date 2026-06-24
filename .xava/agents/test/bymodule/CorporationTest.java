@@ -1,0 +1,139 @@
+package org.openxava.test.tests.bymodule;
+
+import org.htmlunit.html.*;
+import org.openxava.tests.*;
+
+/**
+ * @author Javier Paniza
+ */
+
+public class CorporationTest extends ModuleTestBase {
+	
+	public CorporationTest(String testName) {
+		super(testName, "Corporation");		
+	}
+	
+	public void testJDBCCalculatorInCascadeRemoveCollection_simpleHTMLReportWithCollections_mainDeleteHiddenWhenElementCollectionSelected() throws Exception {  
+		getWebClient().getOptions().setCssEnabled(true); 
+		execute("List.viewDetail", "row=0");
+		assertMainDeleteHiddenWhenElementCollectionSelected(); 
+		execute("Collection.new", "viewObject=xava_view_section0_employees");
+		assertNoErrors();
+		assertValue("salary", "2000");
+		closeDialog();
+		execute("Corporation.report");
+		assertNoErrors();
+		assertTrue(getPopupText().contains("<tr><td>Name:</td><td>RANONE</td></tr>"));
+	}
+	
+	private void assertMainDeleteHiddenWhenElementCollectionSelected() throws Exception { 
+		assertDeleteDisplayed();
+		checkRowCollection("employees", 0);
+		assertDeleteHidden();
+		uncheckRowCollection("employees", 0);
+		assertDeleteDisplayed();
+		
+		checkRowCollection("employees", 0);
+		assertDeleteHidden();
+		checkRowCollection("employees", 1);
+		assertDeleteHidden();
+		uncheckRowCollection("employees", 1);
+		assertDeleteHidden();
+		uncheckRowCollection("employees", 0);
+		assertDeleteDisplayed();
+		
+		checkAllCollection("employees");
+		assertDeleteHidden();
+		uncheckAllCollection("employees");
+		assertDeleteDisplayed();
+		
+		assertCollectionRowCount("employees", 3); // 3 or whatever, just to confirm below we have one more
+		execute("Collection.new", "viewObject=xava_view_section0_employees");
+		setValue("firstName", "JUNIT");
+		setValue("lastName", "TEST");
+		setValue("email", "junittest@example.org");
+		execute("Collection.save");
+		assertCollectionRowCount("employees", 4);
+		assertValueInCollection("employees", 3, 0, "JUNIT");
+		assertDeleteDisplayed();
+		checkRowCollection("employees", 3);
+		assertDeleteHidden();
+		execute("Collection.deleteSelected", "viewObject=xava_view_section0_employees");
+		assertCollectionRowCount("employees", 3);
+		assertDeleteDisplayed();
+	}
+	
+	private void assertDeleteDisplayed() { 
+		assertTrue(getHtmlPage().getHtmlElementById("ox_openxavatest_Corporation__CRUD___delete").isDisplayed());
+	}
+	
+	private void assertDeleteHidden() { 
+		assertFalse(getHtmlPage().getHtmlElementById("ox_openxavatest_Corporation__CRUD___delete").isDisplayed());
+	}
+
+	public void testIconEditor_nextAndPreviousElementInCollection() throws Exception { 
+		getWebClient().getOptions().setCssEnabled(true);
+		reload(); 
+		execute("List.viewDetail", "row=0");
+		assertNoIconInEditor(); 
+		execute("Icon.add", "newIconProperty=icon");
+		executeIconChoose("alarm-check"); 
+
+		assertIconInEditor("alarm-check");
+		
+		execute("CRUD.save");
+		assertNoIconInEditor();
+		
+		execute("Mode.list");
+		assertTrue(getHtml().contains("<i class=\"mdi mdi-alarm-check\"")); 
+		
+		execute("List.viewDetail", "row=0");
+		assertIconInEditor("alarm-check");
+		
+		execute("Icon.change", "newIconProperty=icon");
+		executeIconChoose("arrow-expand"); 
+		assertIconInEditor("arrow-expand");
+		
+		execute("Icon.remove", "newIconProperty=icon");
+		assertNoIconInEditor();
+		
+		execute("CRUD.save");
+		execute("Mode.list");
+		assertFalse(getHtml().contains("<i class=\"mdi mdi-alarm-check\""));
+		execute("List.viewDetail", "row=0");
+		execute("Collection.edit", "row=0,viewObject=xava_view_section0_employees");
+		execute("Collection.previous");
+		assertError("We already are at the beginning of the list");
+		execute("Collection.next");
+		assertValue("salary", "3000");
+		execute("Collection.next");
+		assertValue("salary", "2400");
+		execute("Collection.next");
+		assertValue("salary", "2400");
+	}
+
+	private void executeIconChoose(String icon) throws Exception {
+		HtmlElement view = (HtmlElement) getHtmlPage().getElementById("ox_openxavatest_Corporation__view");
+		HtmlElement i = (HtmlElement) view.getOneHtmlElementByAttribute("i", "class", "mdi mdi-" + icon);
+		i.click();
+		getWebClient().waitForBackgroundJavaScriptStartingBefore(10000);
+	}
+
+	private void assertIconInEditor(String icon) { 
+		HtmlElement editor = (HtmlElement) getHtmlPage().getElementById("ox_openxavatest_Corporation__editor_icon");
+		assertFalse(editor.asXml().contains("<i class=\"mdi mdi-plus\""));
+		assertTrue(editor.asXml().contains("<i class=\"mdi mdi-" + icon + "\""));		
+		HtmlElement close = (HtmlElement) editor.getOneHtmlElementByAttribute("i", "class", "mdi mdi-close-circle");
+		assertTrue(close.isDisplayed());
+	}
+
+	private void assertNoIconInEditor() { 
+		HtmlElement editor = (HtmlElement) getHtmlPage().getElementById("ox_openxavatest_Corporation__editor_icon");
+		assertTrue(editor.asXml().contains("<i class=\"mdi mdi-plus\""));
+		assertFalse(editor.asXml().contains("<i class=\"mdi mdi-alarm-check\""));
+		assertFalse(editor.asXml().contains("<i class=\"mdi mdi-arrow-expand\""));
+		HtmlElement close = (HtmlElement) editor.getOneHtmlElementByAttribute("i", "class", "mdi mdi-close-circle");
+		assertFalse(close.isDisplayed());
+	}
+	
+}

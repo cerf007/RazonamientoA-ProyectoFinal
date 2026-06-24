@@ -1,0 +1,204 @@
+# AGENTS.md
+
+## Conventions for JPA Entities
+
+When creating an entity in this project, follow these rules:
+
+### Lombok
+- Use **Lombok** to automatically generate getters and setters
+- Add the `@Getter` and `@Setter` annotations from Lombok at the class level
+
+### Field Visibility
+- Fields **must NOT be `private`**
+- Use **package-level access** (no visibility modifier)
+
+### Correct Entity Example
+
+```java
+package org.example.Razonamiento.model;
+
+import javax.persistence.*;
+
+import org.openxava.annotations.*;
+import lombok.*;
+
+@Entity
+@Getter
+@Setter
+public class MyEntity {
+
+    @Id
+    @Column(length = 10)
+    String code;
+
+    @Column(length = 50)
+    @Required
+    String name;
+}
+```
+
+### Master-Detail (Collections)
+
+When asked to create a master-detail structure, the detail collection in the master entity **must use `@ElementCollection`** instead of `@OneToMany`. The detail class must be annotated with `@Embeddable` instead of `@Entity`.
+
+#### Master-Detail Example
+
+```java
+package org.example.Razonamiento.model;
+
+import javax.persistence.*;
+
+import org.openxava.annotations.*;
+import lombok.*;
+
+@Entity
+@Getter
+@Setter
+public class Invoice {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
+    @Column(length = 50)
+    @Required
+    String customer;
+
+    @ElementCollection
+    @ListProperties("product, quantity, price")
+    Collection<InvoiceDetail> details;
+}
+```
+
+```java
+package org.example.Razonamiento.model;
+
+import javax.persistence.*;
+
+import org.openxava.annotations.*;
+import lombok.*;
+
+@Embeddable
+@Getter
+@Setter
+public class InvoiceDetail {
+
+    @Column(length = 50)
+    String product;
+
+    int quantity;
+
+    @Money
+    java.math.BigDecimal price;
+}
+```
+
+### Summary
+- ✅ `@Getter @Setter` from Lombok
+- ✅ Fields without modifier (package access)
+- ✅ Use `@ElementCollection` + `@Embeddable` for master-detail collections
+- ❌ Do not use `private` on fields
+- ❌ Do not write getters/setters manually
+- ❌ Do not use `@OneToMany` / `@Entity` for detail collections
+
+## Conventions for Actions
+
+When asked to add an action to an entity in this project, follow these rules:
+
+- Define the action in `src/main/resources/xava/controllers.xml` inside a `<controller>` whose `name` matches the entity name
+- The controller **must extend** the `Typical` controller using `<extends controller="Typical"/>` so the standard actions (new, save, delete, etc.) remain available
+- Create the action class in the `org.example.Razonamiento.actions` package, typically extending `ViewBaseAction`
+- **Do NOT modify the entity class** to register the action.
+
+```xml
+
+<controller name="YourFirstEntity">
+    <extends controller="Typical"/>
+    <action name="showAmount" mode="detail"
+            class="org.example.Razonamiento.actions.ShowAmountAction"/>
+</controller>
+```
+
+```java
+package org.example.Razonamiento.actions;
+
+import org.openxava.actions.*;
+import com.yourcompany.yourapp.model.*;
+
+import java.math.BigDecimal;
+
+public class ShowAmountAction extends ViewBaseAction {
+
+    public void execute() throws Exception {
+        BigDecimal amount = (BigDecimal) getView().getValue("amount");
+        if (amount == null) {
+            addError("amount_not_set"); // Add amount_not_set to i18n messages file
+        } else {
+            addMessage("amount_message", amount); // Add amount_message to i18n messages file
+        }
+    }
+}
+```
+
+- ✅ Add `<extends controller="Typical"/>` in the controller
+- ✅ Match the controller `name` to the entity name
+- ✅ Place action classes under `org.example.Razonamiento.actions`
+- ❌ Do NOT modify the entity class to register an action
+
+## The `.xava` Folder
+
+This project relies on a `.xava` folder that contains agent resources (test examples, controller definitions, etc.). If the `.xava` folder does not exist in the project root:
+- **Run `mvn package`** to generate it
+- **Do NOT add `.xava` to `.gitignore`** — it must remain in the repository
+
+## Conventions for Automated Tests (JUnit)
+
+When creating an automated test or JUnit test in this project, refer to the examples located in `./.xava/agents/test`.
+
+### Test Examples Reference
+- **Examples location**: `./.xava/agents/test`
+- **Available actions**: See `default-controllers.xml` inside `./.xava/agents/test`
+
+### Common Patterns to Follow
+- We use **JUnit 4**
+- Extend `ModuleTestBase` for OpenXava module tests
+- **The first line of each test method must be `login("admin", "admin");`**
+- Follow the package structure by module as shown in the examples
+- **Do NOT try to run tests with `mvn`** — the user will run them from the IDE
+
+### Basic Test Example
+
+```java
+package org.example.Razonamiento.tests;
+
+import org.openxava.tests.*;
+
+public class CustomerTest extends ModuleTestBase {
+
+    public CustomerTest(String testName) {
+        super(testName, "agenttest", "Customer");
+    }
+
+    public void testCreateCustomer() throws Exception {
+        login("admin", "admin");
+        // Test logic here
+    }
+}
+```
+
+### Summary for Tests
+- ✅ Refer to examples in `./.xava/agents/test`
+- ✅ Use `ModuleTestBase` for module tests
+- ✅ First line of each test: `login("admin", "admin");`
+- ✅ Check `default-controllers.xml` for available actions
+- ❌ Do NOT run tests with `mvn`
+
+## Conventions for Dashboards
+
+When asked to create a dashboard, you **must review the following documentation first**:
+- https://openxava.org/OpenXavaDoc/docs/dashboard_en.html
+
+In addition, follow these rules:
+- If there are no existing dashboards, simply name the dashboard class `Dashboard`.
+- Create a `dashboards` package (e.g., `org.example.Razonamiento.dashboards`) and place the `Dashboard` class and its auxiliary classes in it.
+- Add the CSS rules indicated in the documentation to `custom.css` (usually located in `src/main/webapp/xava/style/custom.css`).

@@ -1,0 +1,64 @@
+package org.openxava.test.tests.bymodule;
+
+import org.junit.*;
+import org.openxava.tests.*;
+
+/**
+ * 
+ * @author Javier Paniza
+ */
+
+public class JavaProgrammerTest extends ModuleTestBase {
+	
+	public JavaProgrammerTest() {
+		super("JavaProgrammer");		
+	}
+		
+	@Test
+	public void test2LevelsInheritedEntityCRUD() throws Exception { 
+		execute("CRUD.new");
+		setValue("name", "JUNIT JAVA PROGRAMMER");
+		setValue("sex", "1");
+		setValue("mainLanguage", "JAVA");
+		setValue("favouriteFramework", "OPENXAVA");
+		execute("CRUD.save");
+		assertNoErrors();
+		assertValue("name", "");
+		assertValue("sex", "");
+		assertValue("mainLanguage", "");
+		assertValue("favouriteFramework", "");
+		setValue("name", "JUNIT JAVA PROGRAMMER");
+		execute("CRUD.refresh");
+		assertValue("name", "JUNIT JAVA PROGRAMMER");
+		assertValue("sex", "1");
+		assertValue("mainLanguage", "JAVA");
+		assertValue("favouriteFramework", "OPENXAVA");
+		execute("CRUD.delete");
+		assertMessage("Java programmer deleted successfully");
+	}
+	
+	@Test
+	public void test2LevelsInheritedEntityWithBaseConditionList_noEmailSubscriptionsIfBaseCondition_listModeFilteringNotAlteredAfterGoingDetailWithBaseCondition() throws Exception {
+		assertFalse(getHtml().contains("'" + EmailNotificationsUtils.getEmailSubscriptionAction() + "'")); // Because assertNoAction does not work for this action
+		
+		assertListColumnCount(6);  
+		assertLabelInList(0, "Name");
+		assertLabelInList(1, "Sex");
+		assertLabelInList(2, "Favorite author author"); 
+		assertLabelInList(3, "Favorite author biography");
+		assertLabelInList(4, "Main language");
+		assertLabelInList(5, "Favourite framework");
+		assertListRowCount(1);
+		assertValueInList(0, 0, "JAVI");  		
+
+		execute("List.viewDetail", "row=0");
+		assertNoErrors();
+		execute("Mode.list");
+		execute("List.addColumns");
+		checkRow("selectedProperties", "frameworks.name");
+		execute("AddColumns.addColumns");
+		assertListColumnCount(7); // One more column added
+		assertListRowCount(1); // Query still works with baseCondition
+	}
+		
+}
