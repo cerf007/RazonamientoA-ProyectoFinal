@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Oracle JDK (accidentally placed inside source tree — not part of the project) ###
+src/main/java/org/example/Razonamiento/run/oracleJdk-21/

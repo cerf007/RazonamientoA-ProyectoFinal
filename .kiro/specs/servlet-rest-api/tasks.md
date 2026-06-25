@@ -12,7 +12,7 @@ existing `AutenticacionService`, `CorreccionAutomaticaService`, and `JPAUTil`. T
 
 ## Tasks
 
-- [ ] 0. Add jqwik and Mockito dependencies to `pom.xml`
+- [x] 0. Add jqwik and Mockito dependencies to `pom.xml`
   - Add to `<dependencies>` in `pom.xml`:
     ```xml
     <!-- JUnit 5 -->
@@ -47,7 +47,7 @@ existing `AutenticacionService`, `CorreccionAutomaticaService`, and `JPAUTil`. T
   - _Requirements: 1.1 through 6.5 (prerequisite for all test tasks)_
 
 
-- [ ] 1. Create package structure, `web.xml` registrations, and `JsonBuilder` utility
+- [x] 1. Create package structure, `web.xml` registrations, and `JsonBuilder` utility
   - Create the directory `src/main/java/org/example/Razonamiento/api/`
   - Create `JsonBuilder.java` in that package with static helpers:
     - `str(String key, String value)` — emits `"key":"escaped_value"`
@@ -64,7 +64,7 @@ existing `AutenticacionService`, `CorreccionAutomaticaService`, and `JPAUTil`. T
     `ResultadoServlet_API` (`/api/examen/resultado`) in `web.xml`
   - _Requirements: 6.1, 6.2, 6.3, 6.5_
 
-  - [ ] 1.1 Write property test for `JsonBuilder.uuid` — Property 9
+  - [x] 1.1 Write property test for `JsonBuilder.uuid` — Property 9
     - **Property 9: UUID serialization always produces standard format**
     - **Validates: Requirements 6.1**
     - Create `src/test/java/org/example/Razonamiento/api/JsonBuilderTest.java`
@@ -73,7 +73,7 @@ existing `AutenticacionService`, `CorreccionAutomaticaService`, and `JPAUTil`. T
       set `@Property(tries = 500)`
     - `// Feature: servlet-rest-api, Property 9: UUID serialization always produces standard format`
 
-  - [ ] 1.2 Write property test for `JsonBuilder.iso` — Property 10
+  - [x] 1.2 Write property test for `JsonBuilder.iso` — Property 10
     - **Property 10: ISO-8601 date serialization is correct for all dates**
     - **Validates: Requirements 6.2**
     - In `JsonBuilderTest`, add `@Property(tries = 500)` with `@ForAll` `LocalDateTime`
@@ -83,7 +83,7 @@ existing `AutenticacionService`, `CorreccionAutomaticaService`, and `JPAUTil`. T
       input truncated to seconds
     - `// Feature: servlet-rest-api, Property 10: ISO-8601 date serialization is correct for all dates`
 
-  - [ ] 1.3 Write property test for JSON escape round-trip — Property 12
+  - [x] 1.3 Write property test for JSON escape round-trip — Property 12
     - **Property 12: JSON string escape is safe for arbitrary Unicode input**
     - **Validates: Requirements 6.5**
     - In `JsonBuilderTest`, generate arbitrary `String` values with
@@ -93,7 +93,7 @@ existing `AutenticacionService`, `CorreccionAutomaticaService`, and `JPAUTil`. T
     - `// Feature: servlet-rest-api, Property 12: JSON string escape is safe for arbitrary Unicode input`
 
 
-- [ ] 2. Implement `CorsFilter`
+- [x] 2. Implement `CorsFilter`
   - Create `CorsFilter.java` in `org.example.Razonamiento.api` implementing
     `javax.servlet.Filter` annotated with `@WebFilter("/api/*")`
   - In `doFilter`: unconditionally set these three response headers:
@@ -105,7 +105,7 @@ existing `AutenticacionService`, `CorreccionAutomaticaService`, and `JPAUTil`. T
   - Otherwise call `chain.doFilter(request, response)`
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
 
-  - [ ] 2.1 Write unit tests for `CorsFilter`
+  - [x] 2.1 Write unit tests for `CorsFilter`
     - Create `src/test/java/org/example/Razonamiento/api/CorsFilterTest.java`
     - Use Mockito to mock `HttpServletRequest`, `HttpServletResponse`, `FilterChain`
     - Test 1 (GET): set `request.getMethod()` → `"GET"`; call `filter.doFilter(...)`; verify

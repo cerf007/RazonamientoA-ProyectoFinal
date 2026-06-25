@@ -4,7 +4,53 @@
 
 <web-app>
   <display-name>OpenXava Application</display-name>
-  
+
+  <!-- ============================================================ -->
+  <!-- CORS Filter for REST API                                      -->
+  <!-- ============================================================ -->
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>org.example.Razonamiento.api.CorsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/api/*</url-pattern>
+  </filter-mapping>
+
+  <!-- ============================================================ -->
+  <!-- REST API Servlets                                             -->
+  <!-- ============================================================ -->
+  <servlet>
+    <servlet-name>ExamenServlet</servlet-name>
+    <servlet-class>org.example.Razonamiento.api.ExamenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExamenServlet</servlet-name>
+    <url-pattern>/api/examen/preguntas</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ExamenServlet</servlet-name>
+    <url-pattern>/api/examen/iniciar</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RespuestasServlet</servlet-name>
+    <servlet-class>org.example.Razonamiento.api.RespuestasServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RespuestasServlet</servlet-name>
+    <url-pattern>/api/examen/guardar-respuestas</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ResultadoServlet_API</servlet-name>
+    <servlet-class>org.example.Razonamiento.api.ResultadoServlet_API</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResultadoServlet_API</servlet-name>
+    <url-pattern>/api/examen/resultado</url-pattern>
+  </servlet-mapping>
+
   <!-- Avoid IntelliJ file locking issue on Windows -->
   <servlet>
     <servlet-name>jsp</servlet-name>
