@@ -2,7 +2,7 @@
 
 <!DOCTYPE application SYSTEM "dtds/application.dtd">
 
-<application name="Facturacion"> 
+<application name="Razonamiento">
 	
 	<!-- 
 	A default module for each entity is assumed with the

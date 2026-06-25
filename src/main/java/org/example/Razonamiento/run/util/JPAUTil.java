@@ -1,24 +1,32 @@
 package org.example.Razonamiento.run.util;
 
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger; // Corrección: Usar el Logger de SLF4J directamente
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.logging.Logger;
 
 public class JPAUTil {
-    private static final Logger log = (Logger) LoggerFactory.getLogger(JPAUTil.class);
-    private static final String PERSISTENCE_UNIT = "bfa-pu";
-    private static volatile EntityManager emf;
+    private static final Logger log = LoggerFactory.getLogger(JPAUTil.class);
+
+    // Corrección: Cambiado a "default" para que coincida con tu persistence.xml
+    private static final String PERSISTENCE_UNIT = "default";
+    private static volatile EntityManagerFactory emf;
 
     private JPAUTil() {}
 
-    public static EntityManager getEntityManagerFactory() {
+    public static EntityManagerFactory getEntityManagerFactory() {
         if (emf == null) {
             synchronized (JPAUTil.class) {
                 if (emf == null) {
-                    log.info("Inicializando EntityManagerFactory para '{}'");
-                    emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
+                    log.info("Inicializando EntityManagerFactory para '{}'", PERSISTENCE_UNIT);
+                    try {
+                        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+                    } catch (Exception e) {
+                        log.error("Error crítico al crear EntityManagerFactory: ", e);
+                        throw e;
+                    }
                 }
             }
         }
@@ -26,10 +34,12 @@ public class JPAUTil {
     }
 
     public static EntityManager createEntityManager() {
-        return getEntityManagerFactory().getEntityManagerFactory().createEntityManager();
+        return getEntityManagerFactory().createEntityManager();
     }
 
     public static void shutdown() {
-        if (emf != null && emf.isOpen()) emf.close();
+        if (emf != null && emf.isOpen()) {
+            emf.close();
+        }
     }
 }

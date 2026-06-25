@@ -8,7 +8,7 @@
              
     <persistence-unit name="default">
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    	<non-jta-data-source>java://comp/env/jdbc/RazonamientoDS</non-jta-data-source>
+    	<non-jta-data-source>java://comp/env/jdbc/PsicologiaDS</non-jta-data-source>
     	<class>org.openxava.session.GalleryImage</class>
     	<class>org.openxava.web.editors.DiscussionComment</class>
     	<class>com.openxava.naviox.model.ConfigurationRecord</class>
@@ -23,7 +23,7 @@
     	<class>com.openxava.naviox.model.User</class>
 		<class>com.openxava.naviox.model.LDAPConfiguration</class>
         <properties>
-            <property name="javax.persistence.schema-generation.database.action" value="update"/>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
         </properties>
     </persistence-unit>
                     
@@ -44,9 +44,10 @@
 		<class>com.openxava.naviox.model.LDAPConfiguration</class>
         <properties>
 			<property name="javax.persistence.schema-generation.database.action" value="update"/>
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost:1666"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/RazonamientoA"/>
 			<property name="hibernate.show_sql" value="true"/>
         </properties>
-    </persistence-unit>    
+    </persistence-unit>
     
 </persistence>

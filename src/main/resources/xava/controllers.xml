@@ -32,12 +32,4 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
     	</action>
 	</controller>    
     -->
-
-    <controller name="SignIn">
-        <action name="init" on-init="true" hidden="true"
-                class="com.openxava.naviox.actions.InitSignInAction"/>
-        <action name="signIn"
-                class="org.example.Razonamiento.actions.SignIn"/>
-    </controller>
-
 </controllers>
