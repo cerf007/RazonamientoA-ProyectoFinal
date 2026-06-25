@@ -52,15 +52,16 @@ public class Pregunta {
 
     @Column(name = "respuesta_correcta", nullable = false, length = 1)
     @Required
-    char respuestaCorrecta;
+    String respuestaCorrecta;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prueba_id", nullable = false)
     @NoCreate @NoSearch
     PruebaRazonamientoFormaA prueba;
 
-    public boolean esCorrecta(char opcion) {
-        return Character.toUpperCase(opcion) == Character.toUpperCase(respuestaCorrecta);
+    public boolean esCorrecta(String opcion) {
+        if (opcion == null || respuestaCorrecta == null) return false;
+        return opcion.equalsIgnoreCase(respuestaCorrecta);
     }
 
     @Override

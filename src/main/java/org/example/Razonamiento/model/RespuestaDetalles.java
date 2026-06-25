@@ -21,7 +21,7 @@ public class RespuestaDetalles {
     UUID id;
 
     @Column(name = "opcion_seleccionada", length = 1)
-    char opcionSeleccionada;
+    String opcionSeleccionada;
 
     @Column(name = "es_omitida", nullable = false)
     boolean esOmitida = false;
@@ -38,17 +38,16 @@ public class RespuestaDetalles {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pregunta_id", nullable = false)
     @Required
-    @ReferenceView("Pregunta")
     Pregunta pregunta;
 
-    public void registrarRespuesta(char opcion) {
-        if (opcion == '\0' || opcion == ' ') {
+    public void registrarRespuesta(String opcion) {
+        if (opcion == null || opcion.isBlank()) {
             this.esOmitida = true;
-            this.opcionSeleccionada = '\0';
+            this.opcionSeleccionada = null;
             this.acierto = 0;
         } else {
             this.esOmitida = false;
-            this.opcionSeleccionada = Character.toUpperCase(opcion);
+            this.opcionSeleccionada = opcion.toUpperCase();
             this.acierto = (pregunta != null && pregunta.esCorrecta(opcion)) ? 1 : 0;
         }
     }

@@ -30,13 +30,11 @@ public class HojaRespuesta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "evaluado_id", nullable = false)
     @Required
-    @ReferenceView("Evaluado")
     Evaluado evaluado;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sesion_prueba_id", nullable = false)
     @Required
-    @ReferenceView("SesionPrueba")
     SesionPrueba sesionPrueba;
 
     @OneToMany(mappedBy = "hojaRespuesta", cascade = CascadeType.ALL,

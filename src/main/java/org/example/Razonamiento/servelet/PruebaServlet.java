@@ -89,9 +89,9 @@ public class PruebaServlet extends HttpServlet {
                 if (vals != null && vals.length > 0 && !vals[0].isBlank()) {
                     char op = vals[0].toUpperCase().charAt(0);
                     detalle.registrarRespuesta(
-                            (op=='A'||op=='B'||op=='C'||op=='D') ? op : '\0');
+                            (op=='A'||op=='B'||op=='C'||op=='D') ? String.valueOf(op) : null);
                 } else {
-                    detalle.registrarRespuesta('\0');
+                    detalle.registrarRespuesta(null);
                 }
                 em.merge(detalle);
             }

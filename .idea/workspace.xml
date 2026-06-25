@@ -5,31 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0d2235f-e2fe-4ea4-8ff8-d05a94f8d6c2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/vite.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/calculator/CalculadoraPuntaje.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/calculator/TemporizadorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/BaremoNacional.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/EstadoSesion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/Evaluado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/Evaluador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/HojaRespuesta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/Pregunta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/PruebaRazonamientoFormaA.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/RespuestaDetalles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/Resultado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/SesionPrueba.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/model/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/servelet/PortalExamenServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/servelet/PruebaServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/servelet/ResultadoServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/service/AutenticacionService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/service/CorreccionAutomaticaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/run/util/JPAUTil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/Evaluado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/Evaluado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/HojaRespuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/HojaRespuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/Pregunta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/Pregunta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/RespuestaDetalles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/RespuestaDetalles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/SesionPrueba.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/model/SesionPrueba.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/servelet/PortalExamenServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/servelet/PortalExamenServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/servelet/PruebaServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Razonamiento/servelet/PruebaServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/xava/dtds/validators.dtd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/xava/dtds/validators.dtd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,6 +168,8 @@
       <workItem from="1782398746750" duration="667000" />
       <workItem from="1782399464480" duration="266000" />
       <workItem from="1782399748313" duration="612000" />
+      <workItem from="1782424013289" duration="3258000" />
+      <workItem from="1782429223147" duration="299000" />
     </task>
     <servers />
   </component>

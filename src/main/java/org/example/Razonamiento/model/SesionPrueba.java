@@ -37,7 +37,6 @@ public class SesionPrueba {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "evaluador_id", nullable = false)
     @Required
-    @ReferenceView("Evaluador")
     Evaluador evaluador;
 
     @OneToMany(mappedBy = "sesionPrueba", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
