@@ -1,4 +1,4 @@
-package org.example.Razonamiento.run.model;
+package org.example.Razonamiento.model;
 
 import org.openxava.annotations.*;
 import javax.persistence.*;

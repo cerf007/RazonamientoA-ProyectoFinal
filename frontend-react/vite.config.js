@@ -7,8 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        // Ajustá el puerto (8080) y el nombre exacto de tu app en Tomcat si varían
-        target: 'http://localhost/RazonamientoA-ProyectoFinal', /*Aqui adaptar al puerto de la DB*/
+        // Puerto 8080 es el default de OpenXava con AppServer.run()
+        // El contexto debe coincidir con el <finalName> en pom.xml
+        target: 'http://localhost:8080/Razonamiento',
         changeOrigin: true,
         secure: false,
       }

@@ -1,8 +1,8 @@
-package org.example.Razonamiento.run.servelet;
+package org.example.Razonamiento.servelet;
 
-import org.example.Razonamiento.run.model.*;
-import org.example.Razonamiento.run.service.AutenticacionService;
-import org.example.Razonamiento.run.util.JPAUTil;
+import org.example.Razonamiento.model.*;
+import org.example.Razonamiento.service.AutenticacionService;
+import org.example.Razonamiento.util.JPAUTil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

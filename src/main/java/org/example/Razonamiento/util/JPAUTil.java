@@ -1,4 +1,4 @@
-package org.example.Razonamiento.run.util;
+package org.example.Razonamiento.util;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger; // Corrección: Usar el Logger de SLF4J directamente

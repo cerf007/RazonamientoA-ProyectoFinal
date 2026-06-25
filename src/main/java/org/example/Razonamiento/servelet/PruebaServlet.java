@@ -1,12 +1,12 @@
-package org.example.Razonamiento.run.servelet;
+package org.example.Razonamiento.servelet;
 
-import org.example.Razonamiento.run.calculator.TemporizadorTest;
-import org.example.Razonamiento.run.model.HojaRespuesta;
-import org.example.Razonamiento.run.model.Pregunta;
-import org.example.Razonamiento.run.model.RespuestaDetalles;
-import org.example.Razonamiento.run.model.Resultado;
-import org.example.Razonamiento.run.service.CorreccionAutomaticaService;
-import org.example.Razonamiento.run.util.JPAUTil;
+import org.example.Razonamiento.calculator.TemporizadorTest;
+import org.example.Razonamiento.model.HojaRespuesta;
+import org.example.Razonamiento.model.Pregunta;
+import org.example.Razonamiento.model.RespuestaDetalles;
+import org.example.Razonamiento.model.Resultado;
+import org.example.Razonamiento.service.CorreccionAutomaticaService;
+import org.example.Razonamiento.util.JPAUTil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,10 +1,10 @@
-package org.example.Razonamiento.run.service;
+package org.example.Razonamiento.service;
 
-import org.example.Razonamiento.run.calculator.CalculadoraPuntaje;
-import org.example.Razonamiento.run.util.JPAUTil;
+import org.example.Razonamiento.calculator.CalculadoraPuntaje;
+import org.example.Razonamiento.util.JPAUTil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.example.Razonamiento.run.model.*;
+import org.example.Razonamiento.model.*;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,8 +1,10 @@
-package org.example.Razonamiento.run.model;
+package org.example.Razonamiento.model;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.openxava.annotations.Hidden;
+import org.openxava.annotations.NoCreate;
+import org.openxava.annotations.NoSearch;
 import org.openxava.annotations.ReadOnly;
 import org.openxava.annotations.View;
 
@@ -32,7 +34,7 @@ public class Resultado {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hoja_respuesta_id", nullable = false, unique = true)
-    @Hidden
+    @NoCreate @NoSearch
     HojaRespuesta hojaRespuesta;
 
     @Transient

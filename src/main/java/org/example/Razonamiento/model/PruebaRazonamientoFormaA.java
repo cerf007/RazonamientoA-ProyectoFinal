@@ -1,4 +1,4 @@
-package org.example.Razonamiento.run.model;
+package org.example.Razonamiento.model;
 
 import lombok.Getter;
 import lombok.Setter;

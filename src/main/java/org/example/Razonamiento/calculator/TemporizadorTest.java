@@ -1,6 +1,6 @@
-package org.example.Razonamiento.run.calculator;
+package org.example.Razonamiento.calculator;
 
-import org.example.Razonamiento.run.model.HojaRespuesta;
+import org.example.Razonamiento.model.HojaRespuesta;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

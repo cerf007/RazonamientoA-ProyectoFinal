@@ -1,4 +1,4 @@
-package org.example.Razonamiento.run.model;
+package org.example.Razonamiento.model;
 
 import org.openxava.annotations.*;
 import javax.persistence.*;
@@ -56,7 +56,7 @@ public class Pregunta {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prueba_id", nullable = false)
-    @Hidden
+    @NoCreate @NoSearch
     PruebaRazonamientoFormaA prueba;
 
     public boolean esCorrecta(char opcion) {

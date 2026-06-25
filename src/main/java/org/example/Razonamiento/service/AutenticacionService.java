@@ -1,9 +1,9 @@
-package org.example.Razonamiento.run.service;
+package org.example.Razonamiento.service;
 
-import org.example.Razonamiento.run.model.EstadoSesion;
-import org.example.Razonamiento.run.model.Evaluador;
-import org.example.Razonamiento.run.model.SesionPrueba;
-import org.example.Razonamiento.run.util.JPAUTil;
+import org.example.Razonamiento.model.EstadoSesion;
+import org.example.Razonamiento.model.Evaluador;
+import org.example.Razonamiento.model.SesionPrueba;
+import org.example.Razonamiento.util.JPAUTil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +16,7 @@ public class AutenticacionService {
     
     public boolean loginEvaluador(String username, String password) {
         if (username == null || password == null) return false;
-        JPAUTil JPAUtil = null;
-        EntityManager em = JPAUtil.createEntityManager();
+        EntityManager em = JPAUTil.createEntityManager();
         try {
             em.createQuery(
                             "SELECT e FROM Evaluador e WHERE e.username = :u AND e.password = :p",
@@ -35,8 +34,7 @@ public class AutenticacionService {
 
     public SesionPrueba validarCodigoSesion(String codigoSesion) {
         if (codigoSesion == null || codigoSesion.isBlank()) return null;
-        JPAUTil JPAUtil = null;
-        EntityManager em = JPAUtil.createEntityManager();
+        EntityManager em = JPAUTil.createEntityManager();
         try {
             SesionPrueba sesion = em.createQuery(
                             "SELECT s FROM SesionPrueba s WHERE s.codigoSesion = :codigo",

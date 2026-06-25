@@ -1,4 +1,4 @@
-package org.example.Razonamiento.run.model;
+package org.example.Razonamiento.model;
 
 import org.openxava.annotations.*;
 
@@ -32,7 +32,7 @@ public class RespuestaDetalles {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hoja_respuesta_id", nullable = false)
-    @Hidden
+    @NoCreate @NoSearch
     HojaRespuesta hojaRespuesta;
 
     @ManyToOne(fetch = FetchType.EAGER)

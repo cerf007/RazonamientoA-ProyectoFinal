@@ -1,7 +1,7 @@
-package org.example.Razonamiento.run.calculator;
+package org.example.Razonamiento.calculator;
 
-import org.example.Razonamiento.run.model.BaremoNacional;
-import org.example.Razonamiento.run.model.RespuestaDetalles;
+import org.example.Razonamiento.model.BaremoNacional;
+import org.example.Razonamiento.model.RespuestaDetalles;
 
 import java.util.List;
 

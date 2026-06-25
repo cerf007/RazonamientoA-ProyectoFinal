@@ -1,4 +1,4 @@
-package org.example.Razonamiento.run.servelet;
+package org.example.Razonamiento.servelet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
